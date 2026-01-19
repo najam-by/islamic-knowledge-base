@@ -26,7 +26,8 @@ tenacity>=8.2.0                  # Retry logic with exponential backoff
 
 # NLP & Arabic Processing
 pyarabic>=0.6.0                  # Arabic text utilities
-camel-tools>=1.5.0               # Arabic NLP toolkit
+# camel-tools>=1.4.0,<1.5.0      # Arabic NLP toolkit - DISABLED: incompatible with Python 3.13
+                                  # Will use pyarabic + custom parsers instead
 
 # Utilities
 python-dotenv>=1.0.0             # Environment configuration

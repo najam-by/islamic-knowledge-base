@@ -33,12 +33,20 @@
 - [ ] Define Pydantic models
 - [ ] Load hadiths + temporal markers into DB
 
-#### Pending (requires Docker running)
-- [ ] Test Docker infrastructure startup
-- [ ] Verify PostgreSQL connection
-- [ ] Run Alembic migrations (alembic upgrade head)
-- [ ] Verify schema creation
-- [ ] Initial database population
+#### Completed (Docker verification)
+- [x] Test Docker infrastructure startup - ✅ Working
+- [x] Verify PostgreSQL connection - ✅ Working via docker exec
+- [x] Run Alembic migrations (alembic upgrade head) - ✅ All 7 tables created
+- [x] Verify schema creation - ✅ All indexes, constraints, foreign keys verified
+- [ ] Initial database population - Next: after Pydantic models
+
+**Schema Verification Results:**
+- 7 application tables + 1 alembic_version (expected)
+- All indexes created: 23 indexes (B-Tree, GIN, partial, composite)
+- All CHECK constraints active
+- All foreign keys with CASCADE working
+- Table column counts: raw_hadiths(13), preprocessed_hadiths(12), temporal_markers(16),
+  pcap_assignments(20), hmsts_tags(18), hadith_links(13), validation_results(13)
 
 ---
 

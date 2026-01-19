@@ -31,16 +31,31 @@ echo -e "${GREEN}✓ Docker is running${NC}"
 echo ""
 
 # Step 2: Install Python dependencies
-echo -e "${YELLOW}Step 2: Installing Python dependencies...${NC}"
+echo -e "${YELLOW}Step 2: Setting up Python environment...${NC}"
+
+# Detect Python version
+PYTHON_VERSION=$(python3 --version 2>&1 | awk '{print $2}')
+echo "Detected Python version: $PYTHON_VERSION"
+
 if [ ! -d "venv" ]; then
     echo "Creating virtual environment..."
     python3 -m venv venv
 fi
 
+echo "Activating virtual environment..."
 source venv/bin/activate
+
+echo "Installing dependencies (this may take a few minutes)..."
 pip install -q --upgrade pip
 pip install -q -r requirements.txt
-echo -e "${GREEN}✓ Dependencies installed${NC}"
+
+if [ $? -eq 0 ]; then
+    echo -e "${GREEN}✓ Dependencies installed${NC}"
+else
+    echo -e "${RED}Error: Failed to install dependencies${NC}"
+    echo "Try manually: source venv/bin/activate && pip install -r requirements.txt"
+    exit 1
+fi
 echo ""
 
 # Step 3: Start PostgreSQL
@@ -49,9 +64,9 @@ docker-compose up -d postgres
 echo "Waiting for PostgreSQL to be ready..."
 sleep 5
 
-# Check if PostgreSQL is ready
+# Check if PostgreSQL is ready (using docker exec instead of psql)
 for i in {1..30}; do
-    if docker-compose exec -T postgres pg_isready -U ikb_user > /dev/null 2>&1; then
+    if docker exec islamic_kb_postgres pg_isready -U ikb_user > /dev/null 2>&1; then
         echo -e "${GREEN}✓ PostgreSQL is ready${NC}"
         break
     fi
@@ -66,19 +81,28 @@ echo ""
 # Step 4: Run Alembic migrations
 echo -e "${YELLOW}Step 4: Running database migrations...${NC}"
 alembic upgrade head
-echo -e "${GREEN}✓ Database schema created${NC}"
+
+if [ $? -eq 0 ]; then
+    echo -e "${GREEN}✓ Database schema created${NC}"
+else
+    echo -e "${RED}Error: Migration failed${NC}"
+    exit 1
+fi
 echo ""
 
 # Step 5: Verify schema
 echo -e "${YELLOW}Step 5: Verifying database schema...${NC}"
-TABLE_COUNT=$(docker-compose exec -T postgres psql -U ikb_user -d islamic_kb -tAc "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema='public'")
-echo "Tables created: $TABLE_COUNT"
+TABLE_COUNT=$(docker exec islamic_kb_postgres psql -U ikb_user -d islamic_kb -tAc "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema='public' AND table_name != 'alembic_version'")
+echo "Application tables created: $TABLE_COUNT (excluding alembic_version)"
 
 if [ "$TABLE_COUNT" -eq "7" ]; then
     echo -e "${GREEN}✓ All 7 tables created successfully${NC}"
     echo ""
     echo "Tables:"
-    docker-compose exec -T postgres psql -U ikb_user -d islamic_kb -c "\dt"
+    docker exec islamic_kb_postgres psql -U ikb_user -d islamic_kb -c "\dt"
+    echo ""
+    echo "Verifying table structure:"
+    docker exec islamic_kb_postgres psql -U ikb_user -d islamic_kb -c "SELECT table_name, (SELECT COUNT(*) FROM information_schema.columns WHERE table_name = t.table_name) as column_count FROM information_schema.tables t WHERE table_schema='public' AND table_name != 'alembic_version' ORDER BY table_name;"
 else
     echo -e "${RED}Error: Expected 7 tables, found $TABLE_COUNT${NC}"
     exit 1
@@ -87,13 +111,11 @@ echo ""
 
 # Success message
 echo "=============================================="
-echo -e "${GREEN}Database setup complete!${NC}"
+echo -e "${GREEN}✅ Database setup complete!${NC}"
 echo "=============================================="
 echo ""
-echo "Next steps:"
-echo "1. Review the schema: psql -h localhost -U ikb_user -d islamic_kb"
-echo "2. Proceed with Pydantic models implementation"
-echo "3. Implement data ingestion scripts"
+echo "Virtual environment: $(pwd)/venv"
+echo "To activate: source venv/bin/activate"
 echo ""
 echo "Database connection:"
 echo "  Host: localhost"
@@ -101,4 +123,15 @@ echo "  Port: 5432"
 echo "  Database: islamic_kb"
 echo "  User: ikb_user"
 echo "  Password: changeme123"
+echo ""
+echo "To connect via Docker:"
+echo "  docker exec -it islamic_kb_postgres psql -U ikb_user -d islamic_kb"
+echo ""
+echo "To view tables:"
+echo "  docker exec islamic_kb_postgres psql -U ikb_user -d islamic_kb -c '\\dt'"
+echo ""
+echo "Next steps:"
+echo "1. Implement Pydantic models (src/models/)"
+echo "2. Implement data ingestion (src/ingestion/)"
+echo "3. Load 50,884 hadiths into database"
 echo ""
