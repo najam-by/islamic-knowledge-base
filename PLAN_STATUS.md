@@ -20,16 +20,24 @@
 - [x] processing/README.md documentation
 - [x] Python package structure (__init__.py files)
 - [x] All stub files created per plan
+- [x] Create database schema + migrations (Alembic)
+  - [x] alembic.ini configuration file
+  - [x] src/storage/migrations/env.py
+  - [x] src/storage/migrations/script.py.mako
+  - [x] Initial migration: 20260119_001_initial_schema.py
+  - [x] All 7 tables defined with indexes and constraints
+  - [x] scripts/setup_database.sh automation script
+  - [x] DATABASE_SCHEMA.md documentation
 
 #### In Progress
-- [ ] Create database schema + migrations (Alembic)
 - [ ] Define Pydantic models
 - [ ] Load hadiths + temporal markers into DB
 
-#### Pending
+#### Pending (requires Docker running)
 - [ ] Test Docker infrastructure startup
 - [ ] Verify PostgreSQL connection
-- [ ] Verify Redis connection
+- [ ] Run Alembic migrations (alembic upgrade head)
+- [ ] Verify schema creation
 - [ ] Initial database population
 
 ---
@@ -109,22 +117,21 @@ According to PHASE_2_PLAN.md section 8 (Implementation Sequence), the next steps
 
 ### Current: Phase 2.1 Continuation
 
-1. **Set up PostgreSQL database schema** ← NEXT STEP
-   - Create Alembic configuration
-   - Design raw_hadiths table
-   - Design pcap_assignments table
-   - Design hmsts_tags table
-   - Design hadith_links table
-   - Design validation_results table
-   - Design temporal_markers table
-   - Create initial migration
+1. **✅ Set up PostgreSQL database schema** ← COMPLETED THIS SESSION
+   - ✅ Create Alembic configuration (alembic.ini)
+   - ✅ Create migration environment (env.py, script.py.mako)
+   - ✅ Design all 7 tables with complete schemas
+   - ✅ Create initial migration (20260119_001_initial_schema.py)
+   - ✅ Add setup automation script (setup_database.sh)
+   - ✅ Document schema (DATABASE_SCHEMA.md)
+   - ⏳ Run migrations (requires Docker to be started by user)
 
-2. **Define Pydantic models**
-   - Hadith base model
-   - PCAPOutput model
-   - HMSTSOutput model
-   - ValidationResult model
-   - ProcessingState model
+2. **Define Pydantic models** ← NEXT STEP
+   - Hadith base model (src/models/hadith.py)
+   - PCAPOutput model (src/models/temporal.py)
+   - HMSTSOutput model (src/models/semantic.py)
+   - ValidationResult model (src/models/validation.py)
+   - ProcessingState model (src/models/processing.py)
 
 3. **Load hadiths + temporal markers into DB**
    - Implement hadith_loader.py
@@ -135,7 +142,7 @@ According to PHASE_2_PLAN.md section 8 (Implementation Sequence), the next steps
 
 ## Deviations from Plan
 
-### Session 1 (2026-01-19)
+### Session 1 (2026-01-19 - Initial)
 - **Deviation**: Created directory structure but initially missed:
   - __init__.py files for Python packages
   - Stub files for all modules
@@ -143,6 +150,11 @@ According to PHASE_2_PLAN.md section 8 (Implementation Sequence), the next steps
   - Storage migrations directory
 - **Corrected**: Added all missing structure elements
 - **Reason**: Oversight in initial implementation
+
+### Session 2 (2026-01-19 - Database Schema)
+- **No deviations**: Followed PHASE_2_PLAN.md Section 6.1 exactly
+- **All deliverables**: Alembic setup, migration files, documentation
+- **Ready for**: Migration execution once Docker is started
 
 ---
 
@@ -157,11 +169,43 @@ According to PHASE_2_PLAN.md section 8 (Implementation Sequence), the next steps
 
 ## Context & Session Management
 
-**Current Session Token Usage**: ~120k/200k (60% used)
-**Recommendation**: Continue current session for database schema creation (next step)
+**Session 2 Token Usage**: ~82k/200k (41% used)
+**Recommendation**: Continue current session for Pydantic models implementation
 **New Session Trigger**: Start new session when approaching 180k tokens or beginning new major phase
 
 ---
 
-**Last Updated:** 2026-01-19
+**Last Updated:** 2026-01-19 (Session 2)
 **Updated By:** Claude Sonnet 4.5
+
+## Session 2 Summary
+
+**Completed:**
+- PostgreSQL database schema design (all 7 tables)
+- Alembic migration infrastructure setup
+- Initial migration file with complete table definitions
+- Setup automation script (setup_database.sh)
+- Comprehensive schema documentation (DATABASE_SCHEMA.md)
+
+**Files Created:**
+1. `processing/alembic.ini` - Alembic configuration
+2. `processing/src/storage/migrations/env.py` - Migration environment
+3. `processing/src/storage/migrations/script.py.mako` - Migration template
+4. `processing/src/storage/migrations/versions/20260119_001_initial_schema.py` - Initial migration
+5. `processing/scripts/setup_database.sh` - Automated setup script
+6. `processing/DATABASE_SCHEMA.md` - Complete schema documentation
+
+**Ready for User:**
+User needs to start Docker Desktop, then run:
+```bash
+cd /Users/ns/home/library/ctrl/db/processing
+./scripts/setup_database.sh
+```
+
+This will:
+1. Check Docker is running
+2. Install Python dependencies in venv
+3. Start PostgreSQL container
+4. Run Alembic migrations
+5. Verify all 7 tables created
+6. Display connection information
