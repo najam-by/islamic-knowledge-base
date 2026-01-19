@@ -1,0 +1,49 @@
+# Islamic Knowledge Base - Phase 2 Processing Pipeline
+# Python 3.11+ required
+
+# LLM Integration
+anthropic>=0.40.0                # Claude API
+openai>=1.50.0                   # OpenAI API
+litellm>=1.0.0                   # Unified LLM interface (fallback support)
+
+# Data Processing
+pandas>=2.0.0                    # Hadith data manipulation
+pydantic>=2.5.0                  # Schema validation & type safety
+pydantic-settings>=2.0.0         # Settings management
+jsonschema>=4.20.0               # JSON schema validation
+
+# Database
+psycopg2-binary>=2.9.0           # PostgreSQL adapter
+sqlalchemy>=2.0.0                # ORM & migrations
+alembic>=1.13.0                  # Database migrations
+neo4j>=5.15.0                    # Neo4j driver (Phase 2.5)
+redis>=5.0.0                     # Redis client
+
+# Async Processing
+aiohttp>=3.9.0                   # Async HTTP
+asyncio-throttle>=1.0.0          # Async rate limiting
+tenacity>=8.2.0                  # Retry logic with exponential backoff
+
+# NLP & Arabic Processing
+pyarabic>=0.6.0                  # Arabic text utilities
+camel-tools>=1.5.0               # Arabic NLP toolkit
+
+# Utilities
+python-dotenv>=1.0.0             # Environment configuration
+loguru>=0.7.0                    # Advanced logging
+tqdm>=4.66.0                     # Progress bars
+click>=8.1.0                     # CLI framework
+pyyaml>=6.0                      # Configuration files
+rich>=13.0.0                     # Rich terminal output
+
+# Testing & Development
+pytest>=7.4.0                    # Testing framework
+pytest-asyncio>=0.21.0           # Async testing
+pytest-cov>=4.1.0                # Coverage reporting
+black>=23.0.0                    # Code formatting
+ruff>=0.1.0                      # Fast linting
+mypy>=1.7.0                      # Type checking
+
+# Jupyter (for exploration)
+jupyter>=1.0.0
+ipykernel>=6.26.0
