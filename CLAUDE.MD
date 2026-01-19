@@ -497,6 +497,79 @@ When assisting with this repository:
 
 Islamic religious texts are generally considered accessible for educational and research purposes. For commercial applications, verify attribution requirements and licensing.
 
+## Plan Management & Systematic Workflow
+
+### Active Plan Documents
+
+**Phase 2 Implementation Plan**: [PHASE_2_PLAN.md](PHASE_2_PLAN.md)
+- Comprehensive 10-week implementation plan for LLM processing pipeline
+- Technology stack, architecture, cost estimates, risk mitigation
+- Detailed week-by-week implementation sequence
+
+**Plan Status Tracking**: [PLAN_STATUS.md](PLAN_STATUS.md)
+- Active progress tracking against PHASE_2_PLAN.md
+- Checklist of completed, in-progress, and pending tasks
+- Critical files status
+- Session management notes
+- Deviation log
+
+### Systematic Work Protocol
+
+**CRITICAL: All implementation work MUST follow the plan sequence**
+
+1. **Before Starting Any Work**:
+   - Read PHASE_2_PLAN.md section 8 (Implementation Sequence)
+   - Check PLAN_STATUS.md for current progress
+   - Identify the next pending task in sequence
+
+2. **During Work**:
+   - Follow the plan's specified approach and architecture
+   - Update PLAN_STATUS.md with progress
+   - Document any deviations with reasoning
+
+3. **If Deviation Needed**:
+   - Document reason in PLAN_STATUS.md "Deviations" section
+   - Update PHASE_2_PLAN.md if fundamental change required
+   - Commit changes with clear explanation
+
+4. **Context Management**:
+   - Monitor token usage (target: <180k before new session)
+   - New session recommended at phase boundaries
+   - Always reference PLAN_STATUS.md when resuming
+
+### Anti-Slop Measures
+
+**Problem**: AI can create incomplete implementations or deviate from plans
+
+**Solution**:
+- **Versioned Plans**: PHASE_2_PLAN.md in git, never just in ephemeral context
+- **Status Tracking**: PLAN_STATUS.md shows what's ACTUALLY done vs planned
+- **Explicit Checkpoints**: Each phase has completion criteria
+- **Review Gate**: Compare deliverables against plan before marking complete
+
+**For Claude**:
+- ALWAYS check PLAN_STATUS.md before suggesting next steps
+- NEVER deviate from PHASE_2_PLAN.md without explicit user approval
+- UPDATE PLAN_STATUS.md after completing ANY task
+- COMMIT progress frequently with detailed messages
+
+### Session Continuity
+
+**Starting New Session**:
+```markdown
+1. Read CLAUDE.MD (this file) - understand project
+2. Read PHASE_2_PLAN.md - understand implementation plan
+3. Read PLAN_STATUS.md - see current progress
+4. Find "Next Immediate Steps" section
+5. Continue from there
+```
+
+**Token Budget Management**:
+- Sessions have 200k token context window
+- Aim to start new session at phase boundaries
+- Or when approaching 180k tokens
+- Current phase completion is natural breakpoint
+
 ## Future Directions
 
 1. **Tafsir Integration**: Connect classical Quranic commentaries
