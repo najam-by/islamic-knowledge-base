@@ -49,18 +49,6 @@ class ValidationIssue(BaseModel):
     actual: Optional[str] = Field(None, description="Actual value")
     suggestion: Optional[str] = Field(None, description="Suggested fix")
 
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "issue_type": "anchor_conflict",
-                "severity": "high",
-                "description": "Temporal anchor creates circular dependency",
-                "field": "anchor_before",
-                "expected": "No cycles in anchor relationships",
-                "actual": "Cycle detected: E2 -> E2.1 -> E2",
-                "suggestion": "Remove anchor_before reference to E2"
-            }
-        }
 
 
 class ValidationResult(BaseModel):
@@ -96,22 +84,6 @@ class ValidationResult(BaseModel):
     validated_at: Optional[datetime] = None
     validator_version: Optional[str] = Field(None, max_length=20)
 
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "id": 1,
-                "hadith_id": 1,
-                "version": "v1.0",
-                "validation_type": "pcap_temporal_consistency",
-                "validation_category": "temporal",
-                "status": "pass",
-                "issues": None,
-                "quality_score": 0.92,
-                "temporal_confidence": 0.85,
-                "validation_pass_rate": 1.0,
-                "validator_version": "1.0"
-            }
-        }
 
 
 class QualityMetrics(BaseModel):
@@ -215,26 +187,6 @@ class QualityMetrics(BaseModel):
         metrics.overall_score = metrics.calculate_overall_score()
         return metrics
 
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "hadith_id": 1,
-                "version": "v1.0",
-                "temporal_confidence": 0.85,
-                "evidence_strength": 0.90,
-                "validation_pass_rate": 0.95,
-                "semantic_completeness": 0.88,
-                "overall_score": 0.89,
-                "critical_issues": 0,
-                "high_issues": 0,
-                "medium_issues": 2,
-                "low_issues": 5,
-                "total_validations": 20,
-                "passed_validations": 19,
-                "warning_validations": 1,
-                "failed_validations": 0
-            }
-        }
 
 
 class ValidationBatch(BaseModel):
@@ -256,16 +208,3 @@ class ValidationBatch(BaseModel):
 
     validated_at: datetime = Field(default_factory=datetime.utcnow)
 
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "batch_id": "validation_batch_001",
-                "version": "v1.0",
-                "results": [],
-                "total_hadiths": 1000,
-                "passed_hadiths": 950,
-                "warning_hadiths": 40,
-                "failed_hadiths": 10,
-                "avg_quality_score": 0.87
-            }
-        }

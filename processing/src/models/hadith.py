@@ -21,7 +21,23 @@ class RawHadith(BaseModel):
 
     Maps to: raw_hadiths table
     """
-    model_config = ConfigDict(from_attributes=True, validate_assignment=True)
+    model_config = ConfigDict(
+        from_attributes=True,
+        validate_assignment=True,
+        json_schema_extra={
+            "example": {
+                "id": 1,
+                "id_in_book": 1,
+                "book_id": 1,
+                "chapter_id": 1,
+                "arabic": "إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ",
+                "english_narrator": "Narrated 'Umar bin Al-Khattab",
+                "english_text": "The deeds are considered by the intentions",
+                "book_name_english": "Sahih al-Bukhari",
+                "chapter_name_english": "Revelation"
+            }
+        }
+    )
 
     id: int = Field(..., description="Unique hadith identifier")
     id_in_book: int = Field(..., description="Hadith number within book")
@@ -41,21 +57,6 @@ class RawHadith(BaseModel):
     source_file: Optional[str] = Field(None, max_length=500, description="Source JSON file path")
     loaded_at: Optional[datetime] = Field(None, description="Timestamp when loaded into DB")
 
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "id": 1,
-                "id_in_book": 1,
-                "book_id": 1,
-                "chapter_id": 1,
-                "arabic": "إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ",
-                "english_narrator": "Narrated 'Umar bin Al-Khattab",
-                "english_text": "The deeds are considered by the intentions",
-                "book_name_english": "Sahih al-Bukhari",
-                "chapter_name_english": "Revelation"
-            }
-        }
-
 
 class PreprocessedHadith(BaseModel):
     """
@@ -63,7 +64,22 @@ class PreprocessedHadith(BaseModel):
 
     Maps to: preprocessed_hadiths table
     """
-    model_config = ConfigDict(from_attributes=True, validate_assignment=True)
+    model_config = ConfigDict(
+        from_attributes=True,
+        validate_assignment=True,
+        json_schema_extra={
+            "example": {
+                "hadith_id": 1,
+                "arabic_normalized": "انما الاعمال بالنيات",
+                "isnad_chain": ["Umar bin Al-Khattab", "Hafs bin Aasim", "Yahya bin Sa'id"],
+                "isnad_generation": 0,
+                "explicit_temporal_references": [],
+                "has_explicit_date": False,
+                "text_length_arabic": 156,
+                "text_length_english": 89
+            }
+        }
+    )
 
     hadith_id: int = Field(..., description="References raw_hadiths.id")
 
@@ -102,20 +118,6 @@ class PreprocessedHadith(BaseModel):
     processed_at: Optional[datetime] = None
     preprocessing_version: str = Field("1.0", max_length=20)
 
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "hadith_id": 1,
-                "arabic_normalized": "انما الاعمال بالنيات",
-                "isnad_chain": ["Umar bin Al-Khattab", "Hafs bin Aasim", "Yahya bin Sa'id"],
-                "isnad_generation": 0,
-                "explicit_temporal_references": [],
-                "has_explicit_date": False,
-                "text_length_arabic": 156,
-                "text_length_english": 89
-            }
-        }
-
 
 class HadithCreate(BaseModel):
     """
@@ -127,7 +129,7 @@ class HadithCreate(BaseModel):
     id: int
     id_in_book: int
     book_id: int
-    chapter_id: int
+    chapter_id: Optional[int] = None  # Some hadiths have null chapter_id
     arabic: str = Field(..., min_length=1)
     english_narrator: Optional[str] = None
     english_text: Optional[str] = None
@@ -142,17 +144,9 @@ class HadithSummary(BaseModel):
     """
     Lightweight hadith summary for list views.
     """
-    model_config = ConfigDict(from_attributes=True)
-
-    id: int
-    book_id: int
-    book_name_english: Optional[str] = None
-    chapter_name_english: Optional[str] = None
-    arabic: str = Field(..., max_length=200, description="Truncated Arabic text")
-    english_text: Optional[str] = Field(None, max_length=200, description="Truncated English text")
-
-    class Config:
-        json_schema_extra = {
+    model_config = ConfigDict(
+        from_attributes=True,
+        json_schema_extra={
             "example": {
                 "id": 1,
                 "book_id": 1,
@@ -162,3 +156,11 @@ class HadithSummary(BaseModel):
                 "english_text": "The deeds are considered by the intentions..."
             }
         }
+    )
+
+    id: int
+    book_id: int
+    book_name_english: Optional[str] = None
+    chapter_name_english: Optional[str] = None
+    arabic: str = Field(..., max_length=200, description="Truncated Arabic text")
+    english_text: Optional[str] = Field(None, max_length=200, description="Truncated English text")

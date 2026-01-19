@@ -34,7 +34,26 @@ class TemporalMarker(BaseModel):
 
     Maps to: temporal_markers table
     """
-    model_config = ConfigDict(from_attributes=True, validate_assignment=True)
+    model_config = ConfigDict(
+        from_attributes=True,
+        validate_assignment=True,
+        json_schema_extra={
+            "example": {
+                "event_id": "E2.1",
+                "parent_event_id": "E2",
+                "depth": 1,
+                "era_category": "E2",
+                "ce_start": "624-03-13",
+                "ce_end": "624-03-13",
+                "ah_value": "2",
+                "event_name_english": "Battle of Badr",
+                "location": "Badr, Hejaz",
+                "significance": "First major military victory",
+                "certainty_date": "high",
+                "certainty_event": "certain"
+            }
+        }
+    )
 
     event_id: str = Field(..., max_length=20, description="Unique event identifier (e.g., E2.3.1)")
     parent_event_id: Optional[str] = Field(None, max_length=20, description="Parent event in hierarchy")
@@ -58,24 +77,6 @@ class TemporalMarker(BaseModel):
     source_tradition: Optional[str] = Field(None, max_length=255)
     notes: Optional[str] = None
     loaded_at: Optional[datetime] = None
-
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "event_id": "E2.1",
-                "parent_event_id": "E2",
-                "depth": 1,
-                "era_category": "E2",
-                "ce_start": "624-03-13",
-                "ce_end": "624-03-13",
-                "ah_value": "2",
-                "event_name_english": "Battle of Badr",
-                "location": "Badr, Hejaz",
-                "significance": "First major military victory",
-                "certainty_date": "high",
-                "certainty_event": "certain"
-            }
-        }
 
 
 class PCAPOutput(BaseModel):
@@ -128,23 +129,6 @@ class PCAPOutput(BaseModel):
             raise ValueError(f"latest_ah ({v}) must be >= earliest_ah ({info.data['earliest_ah']})")
         return v
 
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "era_id": "E2",
-                "sub_era_id": "E2.1",
-                "event_window_id": "E2.1.1",
-                "earliest_ah": 2.0,
-                "latest_ah": 2.5,
-                "earliest_ce": "624-03-13",
-                "latest_ce": "624-09-01",
-                "anchor_before": ["Hijrah"],
-                "anchor_after": ["Badr"],
-                "evidence_type": "explicit_event",
-                "posterior_confidence": 0.85,
-                "reasoning": "Hadith explicitly mentions the Battle of Badr context..."
-            }
-        }
 
 
 class PCAPAssignment(PCAPOutput):
@@ -169,23 +153,6 @@ class PCAPAssignment(PCAPOutput):
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
 
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "id": 1,
-                "hadith_id": 1,
-                "version": "v1.0",
-                "era_id": "E2",
-                "earliest_ah": 2.0,
-                "latest_ah": 2.5,
-                "evidence_type": "explicit_event",
-                "posterior_confidence": 0.85,
-                "reasoning": "Hadith mentions Battle of Badr...",
-                "llm_model": "claude-3-5-sonnet-20241022",
-                "llm_cost_usd": 0.06,
-                "processing_duration_ms": 2500
-            }
-        }
 
 
 class PCAPBatch(BaseModel):
@@ -200,13 +167,3 @@ class PCAPBatch(BaseModel):
     total_cost_usd: Optional[Decimal] = Field(None, ge=0)
     total_duration_ms: Optional[int] = Field(None, ge=0)
 
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "assignments": [],
-                "batch_id": "batch_001_v1.0",
-                "version": "v1.0",
-                "total_cost_usd": 6.0,
-                "total_duration_ms": 125000
-            }
-        }

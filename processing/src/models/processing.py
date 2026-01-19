@@ -68,22 +68,6 @@ class Checkpoint(BaseModel):
     created_at: datetime = Field(default_factory=datetime.utcnow)
     valid_until: Optional[datetime] = Field(None, description="Checkpoint expiration")
 
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "checkpoint_id": "ckpt_pcap_batch_005",
-                "stage": "pcap_processing",
-                "version": "v1.0",
-                "last_processed_hadith_id": 500,
-                "total_processed": 500,
-                "total_remaining": 50384,
-                "batch_number": 5,
-                "state_data": {
-                    "parallel_workers": 5,
-                    "batch_size": 100
-                }
-            }
-        }
 
 
 class BatchProgress(BaseModel):
@@ -133,21 +117,6 @@ class BatchProgress(BaseModel):
         successful = self.processed_items - self.failed_items
         return round((successful / self.processed_items) * 100, 2)
 
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "batch_id": "batch_pcap_005",
-                "stage": "pcap_processing",
-                "status": "in_progress",
-                "total_items": 100,
-                "processed_items": 75,
-                "failed_items": 2,
-                "llm_calls_made": 75,
-                "total_cost_usd": 4.50,
-                "total_tokens_used": 750000,
-                "avg_processing_time_ms": 2500
-            }
-        }
 
 
 class ProcessingState(BaseModel):
@@ -197,26 +166,6 @@ class ProcessingState(BaseModel):
         cost_per_hadith = self.total_llm_cost_usd / Decimal(self.processed_hadiths)
         return round(cost_per_hadith * Decimal(self.total_hadiths), 2)
 
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "session_id": "session_20260119_001",
-                "version": "v1.0",
-                "current_stage": "pcap_processing",
-                "status": "in_progress",
-                "total_hadiths": 50884,
-                "processed_hadiths": 5000,
-                "failed_hadiths": 12,
-                "completed_stages": ["initialization", "ingestion", "preprocessing"],
-                "total_llm_cost_usd": 300.50,
-                "total_llm_calls": 5000,
-                "config": {
-                    "batch_size": 100,
-                    "parallel_workers": 5,
-                    "llm_model": "claude-3-5-sonnet-20241022"
-                }
-            }
-        }
 
 
 class ProcessingStatistics(BaseModel):
@@ -266,25 +215,3 @@ class ProcessingStatistics(BaseModel):
         """Total duration in hours."""
         return round(self.total_duration_seconds / 3600, 2)
 
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "session_id": "session_20260119_001",
-                "version": "v1.0",
-                "total_hadiths": 50884,
-                "successfully_processed": 50872,
-                "failed": 12,
-                "success_rate": 0.9998,
-                "pcap_assigned": 50872,
-                "hmsts_tagged": 50872,
-                "avg_temporal_confidence": 0.82,
-                "avg_semantic_completeness": 0.88,
-                "avg_quality_score": 0.85,
-                "total_cost_usd": 8500.00,
-                "total_duration_seconds": 144000,
-                "total_llm_calls": 101744,
-                "avg_cost_per_hadith": 0.167,
-                "validation_pass_rate": 0.9523,
-                "hadiths_requiring_review": 247
-            }
-        }

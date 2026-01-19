@@ -83,15 +83,6 @@ class Layer0(BaseModel):
     verb_type: Optional[str] = Field(None, max_length=100, description="Type of verb (command, report, etc.)")
     modality: Optional[Modality] = Field(None, description="Deontic modality")
 
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "speaker": "Prophet Muhammad (PBUH)",
-                "addressee": "Companions",
-                "verb_type": "command",
-                "modality": "obligatory"
-            }
-        }
 
 
 class Layer1(BaseModel):
@@ -108,12 +99,6 @@ class Layer1(BaseModel):
         description="Ontological categories (Event, Legislation, Ethics, etc.)"
     )
 
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "categories": ["Worship", "Ethics", "Spiritual State"]
-            }
-        }
 
 
 class Layer2(BaseModel):
@@ -125,12 +110,6 @@ class Layer2(BaseModel):
 
     role: FunctionalRole = Field(..., description="Primary functional role")
 
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "role": "Normative"
-            }
-        }
 
 
 class InterpretiveLayer(BaseModel):
@@ -145,15 +124,6 @@ class InterpretiveLayer(BaseModel):
     certainty: Certainty = Field(..., description="Epistemic certainty")
     conditionality: Conditionality = Field(..., description="Contextual conditionality")
 
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "proposition": "Prayer is obligatory five times daily",
-                "scope": "universal",
-                "certainty": "qatʿī",
-                "conditionality": "absolute"
-            }
-        }
 
 
 class Layer3AxisA(BaseModel):
@@ -168,23 +138,6 @@ class Layer3AxisA(BaseModel):
     akhlaq: Optional[InterpretiveLayer] = Field(None, description="Moral/ethical dimension")
     haqiqa: Optional[InterpretiveLayer] = Field(None, description="Metaphysical/ultimate reality")
 
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "zahir": {
-                    "proposition": "Perform ritual prayer five times",
-                    "scope": "universal",
-                    "certainty": "qatʿī",
-                    "conditionality": "absolute"
-                },
-                "akhlaq": {
-                    "proposition": "Cultivate discipline and God-consciousness",
-                    "scope": "universal",
-                    "certainty": "ẓannī",
-                    "conditionality": "contextual"
-                }
-            }
-        }
 
 
 class Layer3AxisB(BaseModel):
@@ -199,23 +152,6 @@ class Layer3AxisB(BaseModel):
     hadd: Optional[InterpretiveLayer] = Field(None, description="Limit/boundary")
     marifa: Optional[InterpretiveLayer] = Field(None, description="Ascent/gnosis")
 
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "amal": {
-                    "proposition": "Physical movements of prayer",
-                    "scope": "universal",
-                    "certainty": "qatʿī",
-                    "conditionality": "absolute"
-                },
-                "niyya": {
-                    "proposition": "Intention of worship and submission",
-                    "scope": "individual",
-                    "certainty": "ẓannī",
-                    "conditionality": "contextual"
-                }
-            }
-        }
 
 
 class Layer4Vectors(BaseModel):
@@ -257,18 +193,6 @@ class Layer4Vectors(BaseModel):
         description="Vices and negative qualities warned against"
     )
 
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "divine_attributes": ["Al-Rahman", "Al-Rahim"],
-                "faculties_addressed": ["intellect", "will"],
-                "maqam_hal": "tawakkul",
-                "legal_cause": "protection of life",
-                "objective": "social cohesion",
-                "values": ["justice", "mercy", "patience"],
-                "vices": ["arrogance", "injustice"]
-            }
-        }
 
 
 # ============================================================================
@@ -298,24 +222,6 @@ class HMSTSOutput(BaseModel):
     # Layer 4: Thematic Vectors
     layer4: Layer4Vectors = Field(..., description="Thematic vectors")
 
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "layer0": {
-                    "speaker": "Prophet Muhammad",
-                    "modality": "obligatory"
-                },
-                "layer1": {
-                    "categories": ["Worship", "Ethics"]
-                },
-                "layer2": {
-                    "role": "Normative"
-                },
-                "layer4": {
-                    "values": ["discipline", "humility"]
-                }
-            }
-        }
 
 
 class HMSTSAssignment(BaseModel):
@@ -385,22 +291,6 @@ class HMSTSAssignment(BaseModel):
             layer4_vectors=output.layer4.model_dump()
         )
 
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "id": 1,
-                "hadith_id": 1,
-                "version": "v1.0",
-                "layer0_modality": "obligatory",
-                "layer1_categories": ["Worship", "Ethics"],
-                "layer2_role": "Normative",
-                "layer3_axis_a": {"zahir": {"proposition": "...", "scope": "universal"}},
-                "layer4_vectors": {"values": ["justice", "mercy"]},
-                "llm_model": "claude-3-5-sonnet-20241022",
-                "llm_cost_usd": 0.10,
-                "semantic_completeness_score": 0.92
-            }
-        }
 
 
 class HMSTSBatch(BaseModel):
@@ -416,14 +306,3 @@ class HMSTSBatch(BaseModel):
     total_duration_ms: Optional[int] = Field(None, ge=0)
     avg_completeness_score: Optional[Decimal] = Field(None, ge=0, le=1)
 
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "assignments": [],
-                "batch_id": "batch_001_v1.0_hmsts",
-                "version": "v1.0",
-                "total_cost_usd": 5.0,
-                "total_duration_ms": 150000,
-                "avg_completeness_score": 0.89
-            }
-        }
