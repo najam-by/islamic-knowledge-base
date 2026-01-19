@@ -1,0 +1,54 @@
+id,parent,depth,ce_sort,ce_start,ce_end,ah,place,marker,cert_date,cert_event,source_tradition,notes
+E0,,0,,0570-00-00,0632-00-00,BH→11 AH,Mecca/Medina,Whole earth-life (birth→death),A,A,Modern reference (range),Birth year and some early dates approximate.
+E1,E0,1,,0570-00-00,0610-00-00,~53–13 BH,Mecca/Hejaz,Pre-Prophethood era,B,A,Core sira + modern reference,Pre-revelation life; many sub-events are approximate.
+E2,E0,1,,0610-00-00,0622-00-00,13–1 BH,Mecca,Meccan Prophethood era,A,A,Core sira + modern reference,Revelation begins in this era; day/month disputed.
+E3,E0,1,,0622-00-00,0632-00-00,1–11 AH,Medina/Arabia,Medinan Prophethood era,A,A,Core sira + modern reference,AH ordering primary post-Hijrah; CE conversions vary.
+E1.1,E1,2,0570-00-00,0570-00-00,0571-00-00,~53 BH,Mecca,Birth (Year of the Elephant; exact day disputed),B,A,Core sira + modern reference,Often dated 570/571 CE.
+E1.2,E1,2,0576-00-00,0576-00-00,0577-00-00,~46 BH,Abwa (route),Mother’s death (Aminah) (approx.),C,B,Core sira,Year varies in reports.
+E1.3,E1,2,0578-00-00,0578-00-00,0579-00-00,~44 BH,Mecca,Grandfather’s death; guardianship to Abu Talib (approx.),C,B,Core sira,Year varies in reports.
+E1.4,E1,2,0582-00-00,0580-00-00,0590-00-00,~40 BH,Syria route (trade),Trade journeys with Abu Talib (approx. window),C,B,Core sira,Window placeholder for early trade travel narratives.
+E1.5,E1,2,0590-00-00,0588-00-00,0592-00-00,~32 BH,Mecca,Hilf al-Fudul (approx. placement),C,B,Early historiography,Often placed after Harb al-Fijar; year not fixed.
+E1.6,E1,2,0595-00-00,0595-00-00,0596-00-00,~27 BH,Mecca,Marriage to Khadijah (approx.),B,A,Core sira + modern reference,Year commonly cited; specifics vary.
+E1.7,E1,2,0605-00-00,0605-00-00,0606-00-00,~17 BH,Mecca,Kaaba rebuilding; Black Stone arbitration (approx.),B,A,Core sira,Traditional dating around 605 CE.
+E1.8,E1,2,0610-00-00,0609-00-00,0610-00-00,~13 BH,Cave Hira area,Retreats to Hira immediately pre-revelation (window),C,A,Core sira,Used to place hadith about pre-revelation retreats.
+E2.1,E2,2,0610-00-00,0610-00-00,0610-00-00,13 BH,Mecca vicinity,First revelation begins (month/day debated),B,A,Core sira + hadith,Often tied to Ramadan; exact date disputed.
+E2.2,E2,2,0610-00-00,0610-00-00,0613-00-00,13–10 BH,Mecca,Early private preaching phase (window),C,A,Core sira,Private da'wah before public proclamation.
+E2.3,E2,2,0613-00-00,0613-00-00,0614-00-00,~9 BH,Mecca,Public call/proclamation phase begins (approx.),C,A,Core sira,Often placed ~3 years after first revelation.
+E2.4,E2,2,0615-00-00,0615-00-00,0616-00-00,~7 BH,Mecca→Abyssinia,First migration to Abyssinia (approx. year),B,A,Early historiography + sira,Year-level commonly 615 CE.
+E2.5,E2,2,0616-00-00,0616-00-00,0619-00-00,~6–3 BH,Mecca,Quraysh boycott (window),B,A,Core sira,Start/end years vary across accounts.
+E2.6,E2,2,0619-00-00,0619-00-00,0619-00-00,~3 BH,Mecca,Year of Sorrow: deaths of Khadijah and Abu Talib (approx.),B,A,Core sira,Commonly placed ~619 CE.
+E2.7,E2,2,0619-00-00,0619-00-00,0620-00-00,~3 BH,Taif,Journey to Taif (approx. placement after Year of Sorrow),C,B,Core sira,Kept as window marker.
+E2.8,E2,2,0620-00-00,0619-00-00,0621-00-00,~2 BH,Mecca→Jerusalem (trad.),Isra and Mi'raj (marker; date disputed),C,A,Core sira + hadith,Use as thematic marker; avoid forcing a specific date.
+E2.9,E2,2,0621-00-00,0621-00-00,0621-00-00,~1 BH,Aqabah (near Mina),First Pledge of Aqabah (approx. year),B,A,Early historiography,Commonly 621 CE.
+E2.10,E2,2,0622-00-00,0622-00-00,0622-00-00,0 BH,Aqabah (near Mina),Second Pledge of Aqabah (approx. year),B,A,Early historiography,Commonly 622 CE.
+E2.11,E2,2,0622-09-00,0622-00-00,0622-12-00,1 AH begins,Mecca→Medina,Hijrah (emigration) to Medina (window),B,A,Core sira + modern reference,Month-level often cited; day varies by conversion.
+E2.12,E2,2,0622-07-16,0622-07-16,0622-07-16,1 Muharram 1 AH (epoch),Calendar anchor,Hijri calendar epoch (1 Muharram 1 AH = 16 July 622 Julian) (conventional),A,A,Modern reference (calendar),Administrative epoch set later; not the travel day.
+E3.1,E3,2,,0622-00-00,0624-00-00,1–2 AH,Medina,Foundation + initial legislation & conflict,B,A,Core sira,Bucket marker.
+E3.2,E3,2,,0624-00-00,0627-00-00,2–5 AH,Medina region,Escalation to major conflicts,B,A,Core sira,Bucket marker.
+E3.3,E3,2,,0628-00-00,0630-00-00,6–8 AH,Arabia,Diplomacy then expansion,B,A,Core sira,Bucket marker.
+E3.4,E3,2,,0630-00-00,0632-00-00,9–11 AH,Arabia,Consolidation + final pilgrimage + last months,B,A,Core sira,Bucket marker.
+E3.1.1,E3.1,3,0622-09-00,0622-00-00,0622-12-00,1 AH,Medina,Arrival/settlement in Medina (window),B,A,Core sira,Use for hadith tied to early Madinan settlement.
+E3.1.2,E3.1,3,0622-00-00,0622-00-00,0623-00-00,1 AH,Medina,Constitution/Charter of Medina (soon after Hijrah) (window),B,A,Early historiography,Dating debated; keep as early-1 AH window.
+E3.1.3,E3.1,3,0622-00-00,0622-00-00,0623-00-00,1 AH,Medina,Institution of adhan (early after Hijrah) (window),B,A,Hadith + sira,Often placed early Madinan period.
+E3.1.4,E3.1,3,0623-00-00,0623-00-00,0624-00-00,1–2 AH,Hejaz,Early patrols/raids phase (pre-Badr) (window),C,A,Sira,Use for hadith describing early expeditions without naming Badr.
+E3.1.5,E3.1,3,0624-00-00,0624-00-00,0624-12-00,2 AH,Medina,Change of qiblah to Mecca (2 AH) (window),B,A,Hadith + sira,Year-level stable; exact CE day varies.
+E3.1.6,E3.1,3,0624-00-00,0624-00-00,0624-12-00,2 AH,Medina,Ramadan fasting becomes obligatory (2 AH) (window),B,A,Fiqh + sira,Year-level stable; exact day varies.
+E3.2.1,E3.2,3,0624-03-13,0624-03-13,0624-03-13,17 Ramadan 2 AH (commonly),Badr,Battle of Badr,B,A,Sira + modern chronologies,CE conversion may vary by a day in some methods.
+E3.2.2,E3.2,3,0625-03-23,0625-03-23,0625-03-23,7 Shawwal 3 AH (commonly),Uhud (near Medina),Battle of Uhud,B,A,Sira + modern chronologies,CE conversion may vary slightly.
+E3.2.3,E3.2,3,0625-00-00,0625-00-00,0626-12-00,4 AH,Hejaz/Medina,"4 AH incidents cluster (e.g., al-Raji', Bi'r Ma'una; Banu Nadir often placed here) (window)",C,B,Sira/historiography,Chronology varies; keep as cluster-window marker.
+E3.2.4,E3.2,3,0627-03-31,0627-03-31,0627-04-14,5 AH,Medina,Battle of the Trench (al-Khandaq / al-Ahzab) (window),B,A,Sira + modern chronologies,Often given as late Mar–early Apr 627 CE.
+E3.2.5,E3.2,3,0627-04-00,0627-04-00,0627-05-00,5 AH,Medina,Banu Qurayzah episode (post-Khandaq) (window),C,A,Sira/historiography,Placed after Khandaq; exact dates vary.
+E3.3.1,E3.3,3,0628-03-00,0628-03-00,0628-03-31,Dhu al-Qadah 6 AH (commonly),Hudaybiyyah,Treaty of Hudaybiyyah (month window),B,A,Sira,Month-level stable; CE day varies.
+E3.3.2,E3.3,3,0628-00-00,0628-00-00,0629-12-00,6–7 AH,Arabia/region,Letters/invitations to rulers (post-Hudaybiyyah) (window),C,B,Historiography,Dating varies across sources.
+E3.3.3,E3.3,3,0628-03-00,0628-03-00,0628-05-00,7 AH,Khaybar,Khaybar campaign (window),B,A,Sira,Often 7 AH / 628 CE; month varies.
+E3.3.4,E3.3,3,0629-00-00,0629-00-00,0629-12-00,7 AH,Mecca,Umrah al-Qada (fulfillment pilgrimage) (window),C,B,Sira,Commonly placed in 7 AH; details vary.
+E3.3.5,E3.3,3,0629-09-00,0629-09-00,0629-09-30,Jumada I 8 AH (commonly),Mutah,Battle of Mutah (month window),B,A,Sira,Month-level varies by conversion.
+E3.3.6,E3.3,3,0629-12-00,0629-12-00,0630-01-31,Ramadan 8 AH,Mecca,Conquest of Mecca (window),B,A,Sira + modern chronologies,Exact day disputed; keep as window.
+E3.3.7,E3.3,3,0630-00-00,0630-00-00,0630-12-00,8 AH,Hunayn,Battle of Hunayn (8 AH) (window),B,A,Sira,Occurs soon after Conquest.
+E3.3.8,E3.3,3,0630-00-00,0630-00-00,0630-12-00,8 AH,Taif,Siege/engagements at Taif (post-Hunayn) (window),B,B,Sira,Window marker.
+E3.4.1,E3.4,3,0630-10-00,0630-10-00,0630-10-31,Rajab 9 AH (commonly),Tabuk,Expedition of Tabuk (month window),B,A,Sira,Month-level stable; CE conversion varies.
+E3.4.2,E3.4,3,0631-00-00,0630-00-00,0631-12-00,9 AH (peak),Medina,Year of Delegations (Aam al-Wufud) (window),C,B,Historiography,Label/boundaries vary.
+E3.4.3,E3.4,3,0632-00-00,0632-00-00,0632-12-00,10 AH,Arafat/Mecca,Farewell Hajj + Farewell Sermon cluster (window),B,A,Hadith + sira,Specific day within Hajj known in AH; CE conversion varies.
+E3.4.4,E3.4,3,0632-00-00,0632-00-00,0632-12-00,10 AH,Mecca,Farewell Pilgrimage (Hajj) (window),B,A,Sira,Often treated as 10 AH / 632 CE.
+E3.4.5,E3.4,3,0632-00-00,0632-01-00,0632-06-00,11 AH,Medina,Final illness period (window),B,A,Hadith + sira,Length and start date vary across reports.
+E3.4.6,E3.4,3,0632-06-08,0632-06-08,0632-06-08,12 Rabi al-Awwal 11 AH (often reported),Medina,Death,B,A,Core tradition + modern references,Hijri day disputed between traditions; CE date widely used in references.

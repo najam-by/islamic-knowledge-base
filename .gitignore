@@ -1,0 +1,107 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Thumbnails
+Thumbs.db
+ehthumbs.db
+
+# Windows
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.npm
+.eslintcache
+
+# Environment files
+.env
+.env.local
+.env.*.local
+*.env
+
+# IDE and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+env/
+.venv
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints/
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+.cache/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+*.bak
+*.orig
+
+# Database files (if any local DBs are created)
+*.sqlite
+*.db
+
+# Compressed archives (except in archive/ folder)
+*.zip
+*.tar.gz
+*.rar
+!archive/*.zip
+!archive/*.tar.gz
+
+# Large binary files that shouldn't be versioned
+*.pdf
+*.epub
+*.mobi
+!3.\ major\ works/**/*.pdf
+!3.\ major\ works/**/*.epub
+
+# Processing outputs (to be added when IPKSA processing begins)
+# processed/
+# output/
+# cache/
+
+# OS generated files
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Claude Code specific
+.claude/

@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<!DOCTYPE package
+  PUBLIC '+//ISBN 0-9673008-1-9//DTD OEB 1.2 Package//EN'
+  'http://openebook.org/dtds/oeb-1.2/oebpkg12.dtd'>
+<package xmlns="http://openebook.org/namespaces/oeb-package/1.0/" unique-identifier="bookid">
+  <metadata>
+    <dc-metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oebpackage="http://openebook.org/namespaces/oeb-package/1.0/">
+      <dc:Format>ANSI/NISO Z39.86-2005</dc:Format>
+      <dc:Identifier id="bookid">TheBookOfKnowledgeByGhazali</dc:Identifier>
+      <dc:Creator>Smirna Si</dc:Creator>
+      <dc:Description>transl. by N. A. Faris&lt;br /&gt;(from Ihya) </dc:Description>
+      <dc:Subject>islam; sufism</dc:Subject>
+      <dc:Title>The Book of Knowledge by Ghazali</dc:Title>
+      <dc:Language>en</dc:Language>
+    </dc-metadata>
+    <x-metadata>
+      <meta name="dtb:multimediaType" content="textNCX"/>
+      <meta name="dtb:multimediaContent" content="text"/>
+      <meta name="dtb:totalTime" content="0"/>
+    </x-metadata>
+  </metadata>
+  <manifest>
+    <item id="xml" href="TheBookOfKnowledgeByGhazali_daisy.xml" media-type="application/x-dtbook+xml"/>
+    <item id="opf" href="TheBookOfKnowledgeByGhazali_daisy.opf" media-type="text/xml"/>
+    <item id="ncx" href="TheBookOfKnowledgeByGhazali_daisy.ncx" media-type="application/x-dtbncx+xml"/>
+    <item id="smil" href="TheBookOfKnowledgeByGhazali_daisy.smil" media-type="application/smil"/>
+    <item id="daisyTransform" href="daisyTransform.xsl" media-type="text/xsl"/>
+    <item id="daisyCss" href="daisy.css" media-type="text/css"/>
+    <item id="htmlCss" href="html.css" media-type="text/css"/>
+    <item id="resource" href="resource.res" media-type="application/x-dtbresource+xml"/>
+  </manifest>
+  <spine>
+    <itemref idref="smil"/>
+  </spine>
+</package>

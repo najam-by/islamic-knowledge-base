@@ -1,0 +1,61 @@
+<?xml version="1.0" ?>
+<!DOCTYPE ncx
+  PUBLIC '-//NISO//DTD ncx 2005-1//EN'
+  'http://www.daisy.org/z3986/2005/ncx-2005-1.dtd'>
+<ncx xmlns="http://www.daisy.org/z3986/2005/ncx/" version="2005-1">
+  <head>
+    <smilCustomTest id="pagenumCustomTest" defaultState="false" override="visible" bookStruct="PAGE_NUMBER"/>
+    <smilCustomTest id="headerCustomTest" defaultState="false" override="visible" bookStruct="PAGE_NUMBER"/>
+    <meta name="dtb:uid" content="TheBookOfKnowledgeByGhazali"/>
+    <meta name="dtb:generator" content="Internet Archive - archive.org"/>
+    <meta name="dtb:depth" content="2"/>
+    <meta name="dtb:totalPageCount" content="0"/>
+    <meta name="dtb:maxPageNumber" content="0"/>
+  </head>
+  <docTitle>
+    <text>The Book of Knowledge by Ghazali</text>
+  </docTitle>
+  <docAuthor>
+    <text>Smirna Si</text>
+  </docAuthor>
+  <navMap>
+    <navInfo>
+      <text>Book navigation</text>
+    </navInfo>
+    <navPoint id="level1_00004" class="navpoint-level-level1" playOrder="1">
+      <navLabel>
+        <text>Producer's Note</text>
+      </navLabel>
+      <content src="TheBookOfKnowledgeByGhazali_daisy.smil#h1_00005"/>
+      <navPoint id="level2_00006" class="navpoint-level-level2" playOrder="2">
+        <navLabel>
+          <text>About Internet Archive Daisy Books</text>
+        </navLabel>
+        <content src="TheBookOfKnowledgeByGhazali_daisy.smil#h2_00007"/>
+      </navPoint>
+      <navPoint id="level2_00009" class="navpoint-level-level2" playOrder="3">
+        <navLabel>
+          <text>About this DAISY book</text>
+        </navLabel>
+        <content src="TheBookOfKnowledgeByGhazali_daisy.smil#h2_00010"/>
+      </navPoint>
+      <navPoint id="level2_00012" class="navpoint-level-level2" playOrder="4">
+        <navLabel>
+          <text>About the Internet Archive</text>
+        </navLabel>
+        <content src="TheBookOfKnowledgeByGhazali_daisy.smil#h2_00013"/>
+      </navPoint>
+    </navPoint>
+    <navPoint id="level1_00016" class="navpoint-level-level1" playOrder="5">
+      <navLabel>
+        <text>Book</text>
+      </navLabel>
+      <content src="TheBookOfKnowledgeByGhazali_daisy.smil#h1_00017"/>
+    </navPoint>
+  </navMap>
+  <pageList>
+    <navLabel>
+      <text>Pages</text>
+    </navLabel>
+  </pageList>
+</ncx>
