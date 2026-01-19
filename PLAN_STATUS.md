@@ -29,9 +29,20 @@
   - [x] scripts/setup_database.sh automation script
   - [x] DATABASE_SCHEMA.md documentation
 
+#### Completed
+- [x] Define Pydantic models - ✅ All 5 files complete (1,500 lines)
+  - [x] hadith.py - Hadith entities (4 models)
+  - [x] temporal.py - PCAP temporal (5 models)
+  - [x] semantic.py - HMSTS 5 layers (15 models)
+  - [x] validation.py - Quality metrics (6 models)
+  - [x] processing.py - State tracking (6 models)
+  - [x] __init__.py - Central exports
+
 #### In Progress
-- [ ] Define Pydantic models
 - [ ] Load hadiths + temporal markers into DB
+  - [ ] Implement hadith_loader.py
+  - [ ] Implement marker_loader.py
+  - [ ] Test data ingestion
 
 #### Completed (Docker verification)
 - [x] Test Docker infrastructure startup - ✅ Working
